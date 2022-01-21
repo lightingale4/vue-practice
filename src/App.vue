@@ -1,10 +1,19 @@
+`
 <template>
     <div id="root">
         <div class="todo-container">
             <div class="todo-wrap">
                 <MyTop :addTodo="addTodo"></MyTop>
                 <MyList :todos="todos" :checkTodo="checkTodo" :removeObj="removeObj"></MyList>
-                <MyFooter :todos="todos" :checkAllTodo='checkAllTodo' :clearAllTodo="clearAllTodo"></MyFooter>
+
+                <!--
+                通过父组件给子组件传递函数类型props实现：子给父传递数据-->
+                <!--
+                通过父组件给子组件自定义绑定事件,子给父传递数据-->
+                <MyFooter :todos="todos"
+                          :checkAllTodo='checkAllTodo'
+                          :clearAllTodo='clearAllTodo'
+                          v-on:getStuName="getName"></MyFooter>
             </div>
         </div>
     </div>
@@ -23,6 +32,11 @@
             };
         },
         methods: {
+            //获取名称方法
+            getName(stuName) {
+                console.log('获取到方法名被调用了', stuName)
+            },
+
             //勾选或取消勾选todo
             checkTodo(id) {
                 this.todos.forEach((todo) => {

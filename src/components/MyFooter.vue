@@ -7,6 +7,9 @@
           <span>已完成{{totalDone}}</span> /全部{{total}}
         </span>
         <button class="btn btn-danger" @click="clearAll">清除已完成任务</button>
+        <hr>
+
+        <button v-on:click="sendName">获取名字</button>
     </div>
 </template>
 
@@ -14,6 +17,11 @@
     export default {
         name: "MyFooter",
         props: ['todos', 'checkAllTodo', 'clearAllTodo'],
+        data() {
+            return {
+                stuName: 'leo'
+            }
+        },
         computed: {
             total() {
                 return this.todos.length
@@ -51,6 +59,9 @@
             // },
             clearAll() {
                 this.clearAllTodo()
+            },
+            sendName() {
+                this.$emit('getStuName',this.stuName)
             }
         }
     };
