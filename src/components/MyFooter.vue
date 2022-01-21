@@ -10,6 +10,7 @@
         <hr>
 
         <button v-on:click="sendName">获取名字</button>
+        <button v-on:click="unBind">解绑事件</button>
     </div>
 </template>
 
@@ -61,7 +62,12 @@
                 this.clearAllTodo()
             },
             sendName() {
-                this.$emit('getStuName',this.stuName)
+                this.$emit('getStuName', this.stuName)
+            },
+            unBind() {
+                //解绑自定义事件
+                // this.$off([])
+                this.$off('getStuName')
             }
         }
     };

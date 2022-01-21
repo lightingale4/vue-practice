@@ -13,7 +13,8 @@
                 <MyFooter :todos="todos"
                           :checkAllTodo='checkAllTodo'
                           :clearAllTodo='clearAllTodo'
-                          v-on:getStuName="getName"></MyFooter>
+                          v-on:getStuName="getName"
+                          ref="myFooter"></MyFooter>
             </div>
         </div>
     </div>
@@ -36,7 +37,10 @@
             getName(stuName) {
                 console.log('获取到方法名被调用了', stuName)
             },
-
+            /**
+             * 定义回调方法
+             * @param id
+             */
             //勾选或取消勾选todo
             checkTodo(id) {
                 this.todos.forEach((todo) => {
@@ -81,9 +85,11 @@
                 handler(value) {
                     //localStorage运用,往本地storage里面存值
                     localStorage.setItem("todos", JSON.stringify(value))
-
                 }
             }
+        },
+        mounted() {
+            this.$refs.myFooter.$on('getStuName', this.getName)
         }
     };
 </script>
