@@ -60,6 +60,7 @@
             MyTop
         },
         watch: {
+            //该种写法是完整的监视器的写法
             todos: {
                 //开启深度监视
                 deep: true,
